@@ -1,7 +1,11 @@
 export default function LabelWithInput(props) {
   return (
     <div className="my-3">
-      <label htmlFor={props.htmlFor} className="block">
+      <label
+        htmlFor={props.htmlFor}
+        className="block"
+        // className={props.labelClass}
+      >
         {props.labelName}
       </label>
       <input
@@ -11,6 +15,7 @@ export default function LabelWithInput(props) {
         placeholder={props.placeholder}
         onChange={props.onChange}
         required
+        value={props.value}
       />
     </div>
   );
