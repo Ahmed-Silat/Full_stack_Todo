@@ -23,14 +23,15 @@ export default function Login() {
 
   const sendLoginData = async (event) => {
     event.preventDefault();
-    await signin(email, password);
-    localStorage.setItem("token", true);
+    const userData = await signin(email, password);
+    // localStorage.setItem("token", true);
+    localStorage.setItem("userData", JSON.stringify(userData));
     navigate("/");
   };
 
   return (
     <div className="flex justify-center items-center h-screen">
-      <div className="bg-white-800 p-8 rounded-lg shadow-lg text-black flex  text-lg">
+      <div className="bg-white-800 p-8 rounded-lg shadow-lg text-black flex  text-lg font-sans">
         <form action="" onSubmit={sendLoginData}>
           <div>
             <HeadingAndText
@@ -65,7 +66,7 @@ export default function Login() {
 
             <Button
               name="LOGIN"
-              className="bg-blue-400 py-2 px-36 flex justify-center transition duration-500 ease-in-out hover:bg-blue-500"
+              className="bg-blue-400 py-2 px-36 flex justify-center transition duration-500 ease-in-out hover:bg-blue-500 font-bold"
             />
 
             <TextWithHorizontalLine />
