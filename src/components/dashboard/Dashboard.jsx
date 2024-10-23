@@ -8,12 +8,14 @@ import {
   updateExistingTodo,
 } from "../service/TodoService";
 import { useNavigate } from "react-router-dom";
+import CheckboxWithInput from "../checkbox-and-input/CheckboxWithInput";
 
 export default function Dashboard() {
   const [todo, setTodo] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [toggleButton, setToggleButton] = useState(false);
   const [id, setId] = useState();
+  const [markCompleted, setMarkCompleted] = useState(false);
   const navigate = useNavigate();
 
   const handleInputChange = (event) => {
@@ -58,6 +60,10 @@ export default function Dashboard() {
     navigate("/login");
   };
 
+  const toggleMarkAsCompleted = (value) => {
+    setMarkCompleted(value);
+  };
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -65,6 +71,18 @@ export default function Dashboard() {
   return (
     <div>
       <div className="flex justify-end mr-6 mt-1">
+        <Button
+          name="Incomplete Todo"
+          className="bg-red-200 ml-2 my-3 px-5 py-2 flex justify-center items-center transition duration-500 ease-in-out hover:bg-red-500 rounded-2xl font-semibold text-sm"
+          // onClick={}
+        />
+
+        <Button
+          name="Completed Todo"
+          className="bg-red-200 ml-2 my-3 px-5 py-2 flex justify-center items-center transition duration-500 ease-in-out hover:bg-red-500 rounded-2xl font-semibold text-sm"
+          // onClick={}
+        />
+
         <Button
           name="LOGOUT"
           className="bg-red-200 ml-2 my-3 px-5 py-2 flex justify-center items-center transition duration-500 ease-in-out hover:bg-red-500 rounded-2xl font-semibold text-sm"
@@ -102,6 +120,7 @@ export default function Dashboard() {
               return (
                 <li key={item.id} className="flex items-center">
                   {item.title}
+                  <CheckboxWithInput labelName="Mark Completed" />
                   <Button
                     name="EDIT"
                     className="bg-blue-400 ml-2 my-3 px-3 py-1 flex justify-center items-center transition duration-500 ease-in-out hover:bg-blue-500 rounded-lg font-semibold text-sm"
